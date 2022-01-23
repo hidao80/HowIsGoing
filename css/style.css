@@ -1,0 +1,27 @@
+.status-0 {
+    color: black;
+}
+
+.status-1 {
+    color: red;
+}
+
+.status-2 {
+    color: orange;
+}
+
+.status-3 {
+    color: green;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 8rem;
+}
+
+th:first-child {
+    width: 10rem;
+}
+
+body {
+    padding-top: 4rem;
+}

@@ -1,0 +1,22 @@
+{
+    "How is going?": "How is going?",
+    "My status": "My status",
+    "Everyone's status": "Everyone's status",
+    "Enter today's todo": "Enter today's todo",
+    "Please enter today's todo.": "Please enter today's todo.",
+    "Cancel": "Cancel",
+    "Today's todo": "Today's todo:",
+    "Input example": "[Project A] Phase 1: task aaa\n[Project B] Phase 3: task kkk",
+    "Crose": "Crose",
+    "Please select user first": "Please select user first.",
+    "User select": "User select",
+    "Pleas select your name": "Pleas select your name:",
+    "Task notes": "Task notes:",
+    "Status": "Statas",
+    "status-0": "Not started",
+    "status-1": "Late",
+    "status-2": "No problem",
+    "status-3": "Done",
+    "Status saved": "Status saved.",
+    "Status saved failed": "Status saved failed."
+}

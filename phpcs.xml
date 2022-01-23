@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel Standards">
+    <description>The Laravel Coding Standards</description>
+
+    <!-- 対象フォルダ -->
+    <file>../laravel/app</file>
+    <file>../laravel/config</file>
+    <file>../laravel/routes</file>
+    <file>../laravel/tests</file>
+    <!--file>../laravel/resources</file-->
+
+    <!-- 除外したいファイル、ディレクトリ -->
+    <exclude-pattern>*/database/*</exclude-pattern>
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <exclude-pattern>*/*.js</exclude-pattern>
+    <exclude-pattern>*/*.css</exclude-pattern>
+    <exclude-pattern>*/*.xml</exclude-pattern>
+    <exclude-pattern>*/*.blade.php</exclude-pattern>
+    <exclude-pattern>*/autoload.php</exclude-pattern>
+    <exclude-pattern>*/storage/*</exclude-pattern>
+    <exclude-pattern>*/docs/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/migrations/*</exclude-pattern>
+
+    <!-- PSR2をベースとする -->
+    <rule ref="PSR2">
+        <!-- 除外したい項目 -->
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+        <exclude name="PSR1.Methods.CamelCapsMethodName"/>
+        <exclude name="Squiz.Classes.ValidClassName"/>
+    </rule>
+
+    <!-- 追加したい項目 -->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+
+    <arg name="colors"/>
+    <arg value="p"/>
+
+    <ini name="memory_limit" value="128M"/>
+</ruleset>

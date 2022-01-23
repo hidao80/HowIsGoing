@@ -1,0 +1,22 @@
+{
+    "How is going?": "進捗どうですか？",
+    "My status": "私の進捗",
+    "Everyone's status": "みんなの進捗",
+    "Enter today's todo": "今日やることの入力",
+    "Please enter today's todo.": "今日やることを入力してください",
+    "Cancel": "キャンセル",
+    "Today's todo": "【本日の予定】───────────────",
+    "Input example": "【プロジェクトA】工程 1：タスク 甲\n【プロジェクトB】工程 3：タスク 乙",
+    "Crose": "閉じる",
+    "Please select user first": "先にユーザーを選択してください。",
+    "User select": "ユーザー選択",
+    "Pleas select your name": "あなたの名前を選択してください:",
+    "Task notes": "タスクのメモ",
+    "Status": "進捗",
+    "status-0": "未着手",
+    "status-1": "遅れ",
+    "status-2": "順調",
+    "status-3": "完了",
+    "Status saved": "変更を保存しました。",
+    "Status saved failed": "変更の保存に失敗しました。"
+}
