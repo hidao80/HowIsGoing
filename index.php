@@ -158,7 +158,7 @@ require_once(__DIR__ . '/lib/functions.php');
             <div class="">
                 <label for="user_name"><?= translation('Pleas select your name') ?></label>
                 <select id="user_name" class="form-control">
-                    <?= create_user_options() ?>
+                    <?= createUserOptions() ?>
                 </select>
             </div>
             </div>

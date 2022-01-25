@@ -3,16 +3,18 @@
 const INSTALL_PATH = '';
 
 /**
- * 
+ * Register the tasks you entered in the "Enter today's todo" dialog.
  */
 function saveTasks() {
     const user_id = localStorage['user_id'];
 
+    // If the user is not selected, it will alert and abort.
     if (!user_id) {
         alert(translation['Please select user first']);
         return;
     }
 
+    // Access the task registration API.
     $.ajax({
         url: INSTALL_PATH + 'api/v1/save/index.php',
         type: 'post',
@@ -21,6 +23,7 @@ function saveTasks() {
             todo: $('#floatingTextarea2').val()
         }),
         success: function (data) {
+            // Reload the page one second after displaying the toast.
             toastr.success(translation['Status saved']);
             setTimeout(function () {
                 location.reload()
@@ -35,9 +38,15 @@ function saveTasks() {
     });
 }
 
+/**
+ * Draws status lights for all users.
+ */
 function turnOnLamps() {
+    // For all users
     $('.card').each(function () {
         var resultLamps = ['', '', '', ''];
+
+        // View all tasks for the user
         $(this).find('tr').each(function () {
             switch ($(this).find('option:selected').val()) {
                 case '0':
@@ -55,6 +64,7 @@ function turnOnLamps() {
             }
         });
 
+        // Sort by highest status value
         var lampsTags = "";
         resultLamps.reverse().forEach(function (element) {
             lampsTags += element;
@@ -65,12 +75,12 @@ function turnOnLamps() {
 }
 
 /**
- * 
- * @returns 
+ * Records the status changes of a task.
  */
 function saveStatus() {
     const user_id = localStorage['user_id'];
 
+    // If the user is not selected, it will alert and abort.
     if (!user_id) {
         alert(translation['Please select user first']);
         return;
@@ -81,6 +91,7 @@ function saveStatus() {
         content: []
     };
 
+    // Access the status update API.
     $('#card-' + user_id).find('tr').each(function () {
         tasks.content.push({
             id: $(this).data('id'),
@@ -111,7 +122,7 @@ function saveStatus() {
 }
 
 /**
- * 
+ * Saves the user information from the user selection dialog to local storage.
  */
 function getUserIdForLoocalStorage() {
     localStorage['user_id'] = $("#selectUserDialog option:selected").val();
@@ -122,7 +133,7 @@ function getUserIdForLoocalStorage() {
 }
 
 /**
- * 
+ * Switches to a mode where only the tasks of the currently selected user are displayed.
  */
 function showMyStatus() {
     $(".card").addClass('d-none');
@@ -132,7 +143,7 @@ function showMyStatus() {
 }
 
 /**
- * 
+ * Switches the mode to show all users' tasks.
  */
 function showEveryoneStatus() {
     $(".card").removeClass('d-none');
@@ -141,7 +152,7 @@ function showEveryoneStatus() {
 }
 
 /**
- * 
+ * Switch the current user.
  */
 function changeActiveUser() {
     // Other user’s Prevents the task from being edited.
