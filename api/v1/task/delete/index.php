@@ -36,7 +36,7 @@ if (empty($task_id)) {
 $DB->exec('BEGIN');
 
 try {
-    $sql    = "UPDATE tasks SET deleted_at = date('now') WHERE id = ? AND user_id = ?";
+    $sql    = "UPDATE tasks SET deleted_at = date('now', 'localtime') WHERE id = ? AND user_id = ?";
     $params = [$task_id, $user_id];
     logOutput('api/v1/task/delete: ' . var_export([$sql, $params], true));
 
