@@ -53,10 +53,16 @@ function getUsers(): array
  * @pram {int} $user_id - The user ID.
  * @return {Array} - A list of tasks.
  */
-function getTodayTasks(int $user_id): array
+function getTodayTasks(int $user_id, ?string $target_date = null): array
 {
     global $DB;
-    $sql   = "SELECT * FROM tasks WHERE user_id = $user_id AND created_at = date('now', 'localtime') AND deleted_at IS NULL";
+    $today         = date('Y-m-d');
+    $target_date ??= $today;
+    $day           = explode('-', $target_date);
+    $date          = checkdate(intval($day[1]), intval($day[2]), intval($day[0])) ? $target_date : $today;
+
+    $sql = "SELECT * FROM tasks WHERE user_id = $user_id AND created_at = date('$date', 'localtime') AND deleted_at IS NULL";
+
     $tasks = $DB->query($sql)->fetchAll();
     return $tasks;
 }

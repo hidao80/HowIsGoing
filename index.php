@@ -50,10 +50,16 @@ require_once(__DIR__ . '/lib/functions.php');
                 <li class="nav-item">
                     <a class="nav-link" id="showEveryoneStatus" onclick="showEveryoneStatus()"><?= translation("Everyone's status") ?></a>
                 </li>
-                <li class="nav-item mr-auto">
+                <li class="nav-item">
                     <button type="button" class="btn btn-link nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <?= translation("Enter today's todo") ?>   
                     </button>
+                </li>
+                <li class="nav-item mr-auto">
+                    <div class="md-form md-outline input-with-post-icon datepicker">
+                        <input type="date" id="date-picker" class="form-control">
+                        <i class="fas fa-calendar input-prefix" tabindex="0"></i>
+                    </div>
                 </li>
             </ul>
             <div  class="navbar-nav ml-auto">
@@ -76,7 +82,7 @@ require_once(__DIR__ . '/lib/functions.php');
         <?php
         $users = getUsers();
         foreach ($users as $user) :
-            $tasks = getTodayTasks(intval($user['id']));
+            $tasks = getTodayTasks(intval($user['id']), $_GET['date'] ?? null);
             ?>
         <div class="row">
             <div class="col-md-12">
@@ -193,8 +199,6 @@ require_once(__DIR__ . '/lib/functions.php');
 </div>
 
 <script>
-    showMyStatus();
-    turnOnLamps();
     var translation = <?= file_get_contents(__DIR__ . "/lang/$LANG.json") ?>;
 </script>
 </body>

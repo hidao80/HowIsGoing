@@ -180,7 +180,7 @@ function getUserIdForLoocalStorage() {
  */
 function showMyStatus() {
     $(".card").addClass('d-none');
-    $("#card-" + localStorage.getItem('user_id')).removeClass('d-none');
+    $("#card-" + localStorage['user_id']).removeClass('d-none');
     $('#showMyStatus').addClass('active');
     $('#showEveryoneStatus').removeClass('active');
 }
@@ -234,6 +234,7 @@ $(function () {
         changeActiveUser();
     }
 
+    // Initialize the task deletion dialog.
     $('.btn-task-delete').on('click', function () {
         const $element = $(this).parent().parent();
         console.log($element.data('id'));
@@ -243,4 +244,26 @@ $(function () {
         $('#delete_target_task_id').data('id', task_id);
         $('#delete_target_task_id').text(translation['Task name is'] + ': ' + task_name);
     });
+
+    // If a date is specified in the GET parameter, it will display that date.
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = ('00' + (now.getMonth() + 1)).slice(-2);
+    var day = ('00' + now.getDate()).slice(-2);
+    var today = year + '-' + month + '-' + day;
+
+    var target_date = (new URL(document.location)).searchParams.get('date');
+
+    today = (target_date != null && !isNaN(new Date(target_date))) ? target_date : today;
+    console.log(today);
+    $('#date-picker').val(today);
+
+    // When the date picker is changed, the tasks for that day will be displayed.
+    $('#date-picker').on('change', function () {
+        location.href = INSTALL_PATH + '?date=' + $(this).val();
+    });
+
+    // Load the tasks for the selected date.
+    showMyStatus();
+    turnOnLamps();
 });
