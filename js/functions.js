@@ -1,10 +1,11 @@
 'use strict';
 /* global translation */
+const INSTALL_PATH = '';
 
 /**
  * 
  */
-function saveTodo() {
+function saveTasks() {
     const user_id = localStorage['user_id'];
 
     if (!user_id) {
@@ -13,10 +14,8 @@ function saveTodo() {
     }
 
     $.ajax({
-        url: 'api/v1/save',
-        type: 'POST',
-        datatype: 'json',
-        contentType: 'application/json',
+        url: INSTALL_PATH + 'api/v1/save/index.php',
+        type: 'post',
         data: JSON.stringify({
             user_id: user_id,
             todo: $('#floatingTextarea2').val()
@@ -28,12 +27,41 @@ function saveTodo() {
             }, 1000);
         },
         error: function (data) {
-            toastr.error(translation['Status saved failed']);
+            toastr.error(data.status + ": " + translation['Status saved failed']);
         },
-        complete: function () {
-            console.log('complete');
+        complete: function (data) {
+            console.log('status code: ' + data.status);
         }
     });
+}
+
+function turnOnLamps() {
+    $('.card').each(function () {
+        var resultLamps = ['', '', '', ''];
+        $(this).find('tr').each(function () {
+            switch ($(this).find('option:selected').val()) {
+                case '0':
+                    resultLamps[0] += "<span class='text-dark'>●</span>";
+                    break;
+                case '1':
+                    resultLamps[1] += "<span class='text-danger'>●</span>";
+                    break;
+                case '2':
+                    resultLamps[2] += "<span class='text-warning'>●</span>";
+                    break;
+                case '3':
+                    resultLamps[3] += "<span class='text-success'>●</span>";
+                    break;
+            }
+        });
+
+        var lampsTags = "";
+        resultLamps.reverse().forEach(function (element) {
+            lampsTags += element;
+        });
+        $(this).find('.status_lamps').html(lampsTags);
+    });
+
 }
 
 /**
@@ -63,22 +91,21 @@ function saveStatus() {
     tasks.content.splice(0, 1);
 
     $.ajax({
-        url: 'api/v1/update',
-        type: 'POST',
-        datatype: 'json',
-        contentType: 'application/json',
+        url: INSTALL_PATH + 'api/v1/update/index.php',
+        type: 'post',
         data: JSON.stringify({
             user_id: user_id,
             tasks: tasks
         }),
         success: function (data) {
             toastr.success(translation['Status saved']);
+            turnOnLamps();
         },
         error: function (data) {
-            toastr.error(translation['Status saved failed']);
+            toastr.error(data.status + ": " + translation['Status saved failed']);
         },
-        complete: function () {
-            console.log('complete');
+        complete: function (data) {
+            console.log('status code: ' + data.status);
         }
     });
 }

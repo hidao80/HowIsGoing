@@ -1,19 +1,4 @@
-.status-0 {
-    color: black;
-}
-
-.status-1 {
-    color: red;
-}
-
-.status-2 {
-    color: orange;
-}
-
-.status-3 {
-    color: green;
-}
-
+/* Status select width */
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
     width: 8rem;
 }
@@ -23,5 +8,6 @@ th:first-child {
 }
 
 body {
+    /* For fixing navbar */
     padding-top: 4rem;
 }

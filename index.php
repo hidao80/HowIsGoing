@@ -76,13 +76,15 @@ require_once(__DIR__ . '/lib/functions.php');
         <?php
         $users = getUsers();
         foreach ($users as $user) :
-            $tasks = getTodayTasks($user['id']);
+            $tasks = getTodayTasks(intval($user['id']));
             ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-3 mr-3 d-none" id="card-<?= $user['id'] ?>" data-user-id="<?= $user['id'] ?>">
                     <div class="card-header">
-                        <?= $user['display_name'] ?></h5>
+                        <span class="h5"><?= $user['display_name'] ?></span>
+                        &nbsp;&nbsp;
+                        <span class="status_lamps"></span>
                     </div>
                     <div class="card-body">
                         <div class="card-text">
@@ -98,10 +100,10 @@ require_once(__DIR__ . '/lib/functions.php');
                                     <tr data-id="<?= $task['id'] ?>">
                                         <td>
                                             <select data-show-content="true" class="selectpicker status">
-                                            <option <?= $task['status'] == 0 ? 'selected' : '' ?> value="0" data-content="<span class='status-0'><?= translation('status-0') ?></span>"></option>
-                                            <option <?= $task['status'] == 1 ? 'selected' : '' ?> value="1" data-content="<span class='status-1'><?= translation('status-1') ?></span>"></option>
-                                            <option <?= $task['status'] == 2 ? 'selected' : '' ?> value="2" data-content="<span class='status-2'><?= translation('status-2') ?></span>"></option>
-                                            <option <?= $task['status'] == 3 ? 'selected' : '' ?> value="3" data-content="<span class='status-3'><?= translation('status-3') ?></span>"></option>
+                                            <option <?= $task['status'] == 0 ? 'selected' : '' ?> value="0" data-content="<span class='text-dark'><?= translation('status-0') ?></span>"></option>
+                                            <option <?= $task['status'] == 1 ? 'selected' : '' ?> value="1" data-content="<span class='text-danger'><?= translation('status-1') ?></span>"></option>
+                                            <option <?= $task['status'] == 2 ? 'selected' : '' ?> value="2" data-content="<span class='text-warning'><?= translation('status-2') ?></span>"></option>
+                                            <option <?= $task['status'] == 3 ? 'selected' : '' ?> value="3" data-content="<span class='text-success'><?= translation('status-3') ?></span>"></option>
                                             </select>
                                         </td>
                                         <td>
@@ -138,7 +140,7 @@ require_once(__DIR__ . '/lib/functions.php');
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= translation("Cancel") ?></button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveTodo()">OK</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="saveTasks()">OK</button>
             </div>
         </div>
     </div>
@@ -170,6 +172,7 @@ require_once(__DIR__ . '/lib/functions.php');
 
 <script>
     showMyStatus();
+    turnOnLamps();
     var translation = <?= file_get_contents(__DIR__ . "/lang/$LANG.json") ?>;
 </script>
 </body>
