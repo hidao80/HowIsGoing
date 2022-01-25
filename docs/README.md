@@ -18,7 +18,7 @@ Features include:
 - There is a screen for checking the progress of the entire team and a screen for checking and entering individual progress, making it easy to manage progress in morning meetings and during the day.
 - **The number of tasks and progress indicator lights allow you to see the degree of progress at a glance**.
 - You can **automatically switch the display language according to the locale of your browser**. Currently, Japanese and English are supported.
-- After you enter your progress or task notes, **they will be automatically saved after 3 seconds**.
+- After you enter your progress or task notes, ~~**they will be automatically saved after 3 seconds**.~~ You can now view and edit past and future tasks as well.
 
 ## How to install
 
@@ -53,7 +53,8 @@ Features include:
   
 ## Unimplemented features 
 
-- [ ] Delete tasks 
+- [x] Delete tasks 
 - [ ] Login function
+- [x] History reference function
 
 Translated with www.DeepL.com/Translator (free version)
