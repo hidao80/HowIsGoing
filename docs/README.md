@@ -18,7 +18,7 @@ Features include:
 - There is a screen for checking the progress of the entire team and a screen for checking and entering individual progress, making it easy to manage progress in morning meetings and during the day.
 - **The number of tasks and progress indicator lights allow you to see the degree of progress at a glance**.
 - You can **automatically switch the display language according to the locale of your browser**. Currently, Japanese and English are supported.
-- After you enter your progress or task notes, ~~**they will be automatically saved after 3 seconds**.~~ You can now view and edit past and future tasks as well.
+- After you enter your progress or task notes, **they will be automatically saved after 3 seconds**.
 
 ## How to install
 
@@ -40,7 +40,7 @@ Features include:
 1. You can add more tasks for today by entering them again from the Task Entry dialog.
 1. You can check the status of the tasks you have entered in the "My status" and "Everyone's status" screens. At this time, you can only edit the status of your own tasks and notes.
 1. Only your own task status and notes will be automatically saved 3 seconds after you stop typing.
-1. You can only see today's tasks.
+1. ~~You can only see today's tasks.~~ You can now view and edit past and future tasks as well.
 
 ## Screenshot 
 
