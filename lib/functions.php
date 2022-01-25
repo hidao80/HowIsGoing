@@ -56,7 +56,7 @@ function getUsers(): array
 function getTodayTasks(int $user_id): array
 {
     global $DB;
-    $sql   = "SELECT * FROM tasks WHERE user_id = $user_id AND created_at = date('now', 'localtime')";
+    $sql   = "SELECT * FROM tasks WHERE user_id = $user_id AND created_at = date('now', 'localtime') AND deleted_at IS NULL";
     $tasks = $DB->query($sql)->fetchAll();
     return $tasks;
 }

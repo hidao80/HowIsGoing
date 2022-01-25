@@ -18,5 +18,8 @@
     "status-2": "No problem",
     "status-3": "Done",
     "Status saved": "Status saved.",
-    "Status saved failed": "Status saved failed."
+    "Status saved failed": "Status saved failed.",
+    "Delete task": "Delete task",
+    "Are you sure you want to delete it?": "Are you sure you want to delete it?",
+    "Task name is": "Task name is"
 }

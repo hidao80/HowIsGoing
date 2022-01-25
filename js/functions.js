@@ -16,11 +16,54 @@ function saveTasks() {
 
     // Access the task registration API.
     $.ajax({
-        url: INSTALL_PATH + 'api/v1/save/index.php',
+        url: INSTALL_PATH + 'api/v1/task/save/index.php',
         type: 'post',
         data: JSON.stringify({
             user_id: user_id,
             todo: $('#floatingTextarea2').val()
+        }),
+        success: function (data) {
+            // Reload the page one second after displaying the toast.
+            toastr.success(translation['Status saved']);
+            setTimeout(function () {
+                location.reload()
+            }, 1000);
+        },
+        error: function (data) {
+            toastr.error(data.status + ": " + translation['Status saved failed']);
+        },
+        complete: function (data) {
+            console.log('status code: ' + data.status);
+        }
+    });
+}
+
+/**
+ * Access the API to delete the target task.
+ */
+function deleteTask() {
+    const user_id = localStorage['user_id'];
+    const task_id = parseInt($('#delete_target_task_id').data('id'));
+    console.log(task_id)
+
+    // If the user is not selected, it will alert and abort.
+    if (!user_id) {
+        alert(translation['Please select user first']);
+        return;
+    }
+
+    if (!task_id) {
+        console.log('task_id is not defined');
+        return;
+    }
+
+    // Access the task deletion API.
+    $.ajax({
+        url: INSTALL_PATH + 'api/v1/task/delete/index.php',
+        type: 'post',
+        data: JSON.stringify({
+            user_id: user_id,
+            task_id: task_id,
         }),
         success: function (data) {
             // Reload the page one second after displaying the toast.
@@ -102,7 +145,7 @@ function saveStatus() {
     tasks.content.splice(0, 1);
 
     $.ajax({
-        url: INSTALL_PATH + 'api/v1/update/index.php',
+        url: INSTALL_PATH + 'api/v1/task/update/index.php',
         type: 'post',
         data: JSON.stringify({
             user_id: user_id,
@@ -190,4 +233,14 @@ $(function () {
 
         changeActiveUser();
     }
+
+    $('.btn-task-delete').on('click', function () {
+        const $element = $(this).parent().parent();
+        console.log($element.data('id'));
+        const task_id = $element.data('id');
+        const task_name = $element.find('label').text();
+
+        $('#delete_target_task_id').data('id', task_id);
+        $('#delete_target_task_id').text(translation['Task name is'] + ': ' + task_name);
+    });
 });

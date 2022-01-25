@@ -112,6 +112,9 @@ require_once(__DIR__ . '/lib/functions.php');
                                                 <label for="floatingTextarea-<?= $index ?>"><?= $task['task'] ?></label>
                                             </div>
                                         </td>
+                                        <td>
+                                            <button type="button" class="btn-close btn-task-delete"  data-bs-toggle="modal" data-bs-target="#deleteModal" aria-label="<?= translation("Delete task") ?>"></button>
+                                        </td>
                                     </tr>
                             <?php endforeach; ?>
                                 </tbody>
@@ -165,6 +168,25 @@ require_once(__DIR__ . '/lib/functions.php');
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= translation("Cancel") ?></button>
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="getUserIdForLoocalStorage()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete confirm modal  -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="dialogLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalLabelId3"><?= translation("Are you sure you want to delete it?") ?></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?= translation("Crose") ?>"></button>
+            </div>
+            <div class="modal-body">
+                <span id="delete_target_task_id" data-id=""></span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?= translation("Cancel") ?></button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="deleteTask()">OK</button>
             </div>
         </div>
     </div>

@@ -18,5 +18,8 @@
     "status-2": "順調",
     "status-3": "完了",
     "Status saved": "変更を保存しました。",
-    "Status saved failed": "変更の保存に失敗しました。"
+    "Status saved failed": "変更の保存に失敗しました。",
+    "Delete task": "タスクの削除",
+    "Are you sure you want to delete it?": "本当に削除しますか？",
+    "Task name is": "タスク名"
 }
