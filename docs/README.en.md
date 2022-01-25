@@ -5,7 +5,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.1.1-blue.svg)](https://nodejs.org/ja/)
 ![hidao quality](https://img.shields.io/badge/hidao-quality-orange.svg)
 
-## What is going?
+## What is "How is going"?
 
 It is a progress sharing system for web servers where PHP runs in-house.
 Features include: 
