@@ -20,7 +20,8 @@ function saveTasks() {
         type: 'post',
         data: JSON.stringify({
             user_id: user_id,
-            todo: $('#floatingTextarea2').val()
+            todo: $('#floatingTextarea2').val(),
+            date: $('#date-picker').val(),
         }),
         success: function (data) {
             // Reload the page one second after displaying the toast.

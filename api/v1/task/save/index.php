@@ -33,12 +33,21 @@ if (empty($todo_list)) {
     return;
 }
 
+// If there is no task ID in the sent JSON,
+// continue the process using today's date.
+$date = $contents['date'];
+logOutput('api/v1/task/delete: date = ' . $date);
+if (empty($date)) {
+    logOutput('api/v1/task/delete: date is empty. Using today.');
+    $date = date('Y-m-d');
+}
+
 $DB->exec('BEGIN');
 
 try {
     foreach ($todo_list as $value) {
-        $sql    = "INSERT INTO tasks (user_id, task, status, created_at) VALUES (?, ?, 0, date('now', 'localtime'))";
-        $params = [$user_id, trim($value)];
+        $sql    = "INSERT INTO tasks (user_id, task, status, created_at) VALUES (?, ?, 0, date(?, 'localtime'))";
+        $params = [$user_id, trim($value), $date];
         logOutput('api/v1/task/save: ' . var_export([$sql, $params], true));
 
         $DB->prepare($sql)->execute($params);
